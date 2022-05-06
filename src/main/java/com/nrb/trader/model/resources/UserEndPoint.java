@@ -1,6 +1,5 @@
 package com.nrb.trader.model.resources;
 
-import com.nrb.trader.model.entities.User;
 import com.nrb.trader.model.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/trader")
-public class UserResource {
+public class UserEndPoint {
 
     @Autowired
     private UserService userService;

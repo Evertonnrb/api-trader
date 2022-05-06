@@ -2,8 +2,7 @@ package com.nrb.trader.model.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -27,7 +26,10 @@ public class Product extends GenericId implements Serializable {
     @NonNull
     private String imgUlr;
 
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "tb_product_category",
+    joinColumns = @JoinColumn(name = "product_id"),
+    inverseJoinColumns = @JoinColumn(name = "category_id"))
     @Setter(AccessLevel.NONE)
     private Set<Category> categories = new HashSet<>();
 

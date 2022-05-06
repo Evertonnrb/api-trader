@@ -1,6 +1,6 @@
 package com.nrb.trader.model.resources;
 
-import com.nrb.trader.model.services.ProductService;
+import com.nrb.trader.model.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,21 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/trader")
-public class ProductResource {
+public class OrderEndPoint {
 
     @Autowired
-    private ProductService productService;
+   private OrderService orderService;
 
-
-    @GetMapping("/producties")
-    public ResponseEntity<?> findAll() {
-        return ResponseEntity.ok().body(productService.findAll());
+    @GetMapping("/orders")
+    public ResponseEntity<?> findAll(){
+        return ResponseEntity.ok().body(orderService.findAll());
     }
 
-    @GetMapping("/producties/{id}")
-    public ResponseEntity<?> findById(@PathVariable Long id) {
-        return ResponseEntity.ok().body(productService.findById(id));
+    @GetMapping("/orders/{id}")
+    public ResponseEntity<?> findById(@PathVariable Long id){
+        return ResponseEntity.ok().body(orderService.findById(id));
     }
-
-
 }
