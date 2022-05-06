@@ -1,14 +1,8 @@
 package com.nrb.trader.config;
 
-import com.nrb.trader.model.entities.Category;
-import com.nrb.trader.model.entities.Order;
-import com.nrb.trader.model.entities.Product;
-import com.nrb.trader.model.entities.User;
+import com.nrb.trader.model.entities.*;
 import com.nrb.trader.model.entities.enuns.OrderStatus;
-import com.nrb.trader.model.repositories.CategoryRepository;
-import com.nrb.trader.model.repositories.OrderRespository;
-import com.nrb.trader.model.repositories.ProductRespository;
-import com.nrb.trader.model.repositories.UserRespository;
+import com.nrb.trader.model.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -24,12 +18,12 @@ public class TestConfig implements CommandLineRunner {
     UserRespository userRespository;
     @Autowired
     OrderRespository orderRespository;
-
     @Autowired
     CategoryRepository categoryRepository;
-
     @Autowired
     ProductRespository productRespository;
+    @Autowired
+    OrderItemRepository orderItemRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -71,6 +65,13 @@ public class TestConfig implements CommandLineRunner {
 
         userRespository.saveAll(asList(jao, ze, alan, miguel));
         orderRespository.saveAll(asList(order1, order2, order3, order4));
+
+        OrderItem o1 = new OrderItem(order1,p,2,p.getPrice());
+        OrderItem o2 = new OrderItem(order2,p3,3,p3.getPrice());
+        OrderItem o3 = new OrderItem(order3,p2,4,p2.getPrice());
+        OrderItem o4 = new OrderItem(order4,p,1,p4.getPrice());
+        orderItemRepository.saveAll(asList(o1,o2,o3,o4));
+
     }
 
 }
